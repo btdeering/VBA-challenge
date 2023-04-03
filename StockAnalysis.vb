@@ -16,6 +16,12 @@ Sub StockAnalysis()
         
         j = 2
         
+        ws.Range("I1").Value = "Ticker"
+        ws.Range("J1").Value = "Yearly Change"
+        ws.Range("K1").Value = "Percent Change"
+        ws.Range("L1").Value = "Total Stock Volume"
+        ws.Range("P1").Value = "Ticker"
+        ws.Range("Q1").Value = "Value"
         
         last_row = ws.Cells(Rows.Count, 1).End(xlUp).Row
         
@@ -41,6 +47,8 @@ Sub StockAnalysis()
                 ws.Cells(j, 9).Value = ticker
                 ws.Cells(j, 10).Value = yearly_change
                 ws.Cells(j, 11).Value = percent_change
+                ws.Cells(j, 11).NumberFormat = "0.00%"
+                
                 ws.Cells(j, 12).Value = total_volume
                 
                 ticker = ws.Cells(i, 1).Value
@@ -97,6 +105,11 @@ Sub StockAnalysis()
     End If
     
     Next i
+    
+    ws.Range("Q2").Value = max_increase
+    ws.Range("Q2").NumberFormat = "0.00%"
+    ws.Range("Q3").Value = max_decrease
+    ws.Range("Q3").NumberFormat = "0.00%"
     
     ws.Cells(2, 15).Value = "Greatest % Increase"
     ws.Cells(2, 16).Value = max_increase_ticker
